@@ -31,7 +31,7 @@ go_image(
 container_image(
     name = "image",
     base = ":base_image",
-    stamp = True,
+    stamp = "True",
     visibility = ["//visibility:public"],
 )
 
@@ -46,6 +46,6 @@ go_image(
 container_image(
     name = "image_dev",
     base = ":base_image_dev",
-    stamp = True,
+    stamp = "True",
     visibility = ["//visibility:public"],
 )
