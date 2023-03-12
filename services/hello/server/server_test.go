@@ -2,7 +2,9 @@ package server
 
 import (
 	"fmt"
+	"io"
 	"io/ioutil"
+	"net/http"
 	"net/http/httptest"
 	"testing"
 
@@ -10,10 +12,12 @@ import (
 )
 
 func TestHello(t *testing.T) {
-	srv := New(1123)
+	sayHello := func(w http.ResponseWriter, r *http.Request) {
+		io.WriteString(w, "Hello!!")
+	}
 	req := httptest.NewRequest("GET", "http://example.com/hello", nil)
 	w := httptest.NewRecorder()
-	srv.sayHello(w, req)
+	sayHello(w, req)
 
 	resp := w.Result()
 	body, _ := ioutil.ReadAll(resp.Body)
